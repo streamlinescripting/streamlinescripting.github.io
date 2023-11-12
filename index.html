@@ -1,68 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
-    <meta name="description" content="Streamline Scripting">
-	  <meta name="keywords" content="Scripting, Productivity, Python, Power Shell, PowerShell, BASH, Coding, Automation">
-  	<meta name="author" content="Streamline Scripting">
-    <title>Streamline Scripting | Welcome</title>
-    <link rel="stylesheet" href="./css/style.css">
-  </head>
+	<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Streamline Scripting">	  
+		<meta name="keywords" content="Scripting, Productivity, Python, Power Shell, PowerShell, BASH, Coding, Automation">
+		<meta name="author" content="Streamline Scripting">
+		<title>Streamline Scripting | Welcome</title>
 
-<!-- I'm not very stylish -->
-<style> 
-body { 
-    background: linear-gradient(180deg, #d7eef4ff, #9fcee1ff); /* Add a linear gradient (180 deg.)... */
-    background-attachment: fixed;                                  /* ...across the entire size of the viewport */
-    font: 15px/1.5 "Times New Roman", Times, serif; padding:0; margin:0; }
-.logo { 
-    padding-top: 4vw; max-width: 35vw; } /* vw is view width */
-.mission {
-    padding-top: 3vw; padding-left: 20vw; max-width: 60vw; text-align: justify; text-justify: inter-word; }
-.subsequent_items {
-    padding-left: 20vw; max-width: 60vw; text-align: justify; text-justify: inter-word; }
+		<!-- Client detection -->
+        <script>
+        function setFontSize() { // Custom function to detect the client device type and set font size accordingly
+            var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            var sectionIds = ['#content', '#body']; // Specify the IDs of the sections you want to update
 
-.gradient_text { /* Add linear gradients into individual text elements */
-    background-image: linear-gradient(90deg, #f67038ff, #df4bebff);
-    -webkit-background-clip: text; background-clip: text; color: transparent; display: inline; }
-a {
-    color: inherit }/*Hyperlink Colors: inherit parent properties, Black normally and green when clicked*/
-a:hover {
-    background-image: linear-gradient(90deg, #f67038ff, #df4bebff); -webkit-background-clip: text; background-clip: text; color: transparent; display: inline; text-decoration: underline; }
-a:active {
-    background-image: linear-gradient(90deg, #f67038ff, #df4bebff); -webkit-background-clip: text; background-clip: text; color: transparent; display: inline; text-decoration: underline; }
-#content{ 
-    text-align:center; } /* Logo centering */
-#content p{ 
-    font-size: 1.2vw; } /* Using viewport width for proportional font size */
-.copyright {
-    padding-top: 2vw; font-size: 0.75vw; } /* Using viewport width for proportional font size */
-footer{
-    color:#000000; text-align: center; font-size: 1vw; } /* Using viewport width for proportional font size */
-</style> 
+            sectionIds.forEach(function(sectionId) {
+                var paragraphs = document.querySelectorAll(sectionId + ' p');
+                paragraphs.forEach(function(paragraph) {
+                    if (isMobile) {
+                        paragraph.style.fontSize = '4vw'; // Adjust the font size for mobile devices
+                    } else {
+                        paragraph.style.fontSize = '1.2vw'; // Adjust the font size for desktop devices
+                    }
+                });
+            });
+        }
+        window.onload = setFontSize; // Call the setFontSize function on page load
+        </script>
+
+		<!-- I'm not very stylish -->
+		<style> 
+			body { 
+			    background: linear-gradient(180deg, #d7eef4ff, #9fcee1ff); /* Add a linear gradient (180 deg.)... */
+			    background-attachment: fixed;                                  /* ...across the entire size of the viewport */
+			    font: 15px/1.5 "Times New Roman", Times, serif; padding:0; margin:0; }
+			.logo { 
+			    padding-top: 4vw; max-width: 35vw; } /* vw is view width */
+			.mission {
+			    padding-top: 3vw; padding-left: 20vw; max-width: 60vw; text-align: justify; text-justify: inter-word; }
+			.subsequent_items {
+			    padding-left: 20vw; max-width: 60vw; text-align: justify; text-justify: inter-word; }
+			.gradient_text { /* Add linear gradients into individual text elements */
+			    background-image: linear-gradient(90deg, #f67038ff, #df4bebff);
+			    -webkit-background-clip: text; background-clip: text; color: transparent; display: inline; }
+			a {
+			    color: inherit } /*Hyperlink Colors: inherit parent properties, Black normally and green when clicked*/
+			a:hover, a:active {
+			    background-image: linear-gradient(90deg, #f67038ff, #df4bebff); -webkit-background-clip: text; background-clip: text; color: transparent; display: inline; text-decoration: underline; }
+			#content, #body{ 
+			    text-align:center; } /* Logo centering */
+			.copyright {
+			    padding-top: 2vw; font-size: 0.75vw; } /* Using viewport width for proportional font size */
+			footer{
+			    color:#000000; text-align: center; font-size: 1vw; } /* Using viewport width for proportional font size */
+		</style> 
+
+
+
+	</head>
 
 <!-- Bodyparts ;) -->
 <body>
     <section id="content">
-	      <img src="./img/Streamline_Scripting_v2.png"
+	    <img src="./img/Streamline_Scripting_v2.png"
         class="logo">
     </section>
 
   <section id="content">
     <div class="mission">
-	    <p>At <span class="gradient_text">Streamline Scripting</span>, our mission is to <span class="gradient_text">empower</span> clients to reframe cultures from 'What can we do today?' to <i>'What ecosystem can we build for a better tomorrow?'</i> We create tailored, automated sofware solutions that seamlessly activate existing computational assets to work tirelessly at enhancing productivity, allowing engineers to focus on the <span class="gradient_text">big picture</span>.
-      </p>  
+		<p>At <span class="gradient_text">Streamline Scripting</span>, our mission is to <span class="gradient_text">empower</span> clients to reframe cultures from 'What can we do today?' to <i>'What ecosystem can we build for a better tomorrow?'</i> We create tailored, automated sofware solutions that seamlessly activate existing computational assets to work tirelessly at enhancing productivity, allowing engineers to focus on the <span class="gradient_text">big picture</span>.</p>  
     </div>
   </section>
   
   <section id="content">
     <div class="subsequent_items">
-	    <p>Using our <span class="gradient_text"><a href="https://escholarship.org/uc/item/4qb8927d">published</a></span> and <span class="gradient_text"><a href="https://escholarship.org/uc/item/4qb8927d">freely available</a></span> methods, our approach is to identify and automate (with <span class="gradient_text">PowerShell</span>, <span class="gradient_text">Python</span>, <span class="gradient_text">JSL</span>, <span class="gradient_text">.NET</span>, <span class="gradient_text">BASH</span>, etc...) key operations in the visualization, processing, analysis, and generation of data sets used by techology sectors to eliminate monotonous tasks prone to human-errors.
-      </p>  
-      <p>
-      Streamline Scripting, LLC is pleased to offer its expertise with the understanding that project requirements may vary and, as such, we are open to discussing <span class="gradient_text">custom pricing</span> structures based on specific needs. For inquiries, please contact us at <a href = "mailto: sales@streamlinescripting.com" style="text-decoration:none !important; text-decoration:none;"><span class="gradient_text">sales@streamlinescripting.com</span></a>
-      </p>
+	    <p>Using our <span class="gradient_text"><a href="https://escholarship.org/uc/item/4qb8927d">published</a></span> and <span class="gradient_text"><a href="https://escholarship.org/uc/item/4qb8927d">freely available</a></span> methods, our approach is to identify and automate (with <span class="gradient_text">PowerShell</span>, <span class="gradient_text">Python</span>, <span class="gradient_text">JSL</span>, <span class="gradient_text">.NET</span>, <span class="gradient_text">BASH</span>, etc...) key operations in the visualization, processing, analysis, and generation of data sets used by techology sectors to eliminate monotonous tasks prone to human-errors.</p>  
+      	<p> Streamline Scripting, LLC is pleased to offer its expertise with the understanding that project requirements may vary and, as such, we are open to discussing <span class="gradient_text">custom pricing</span> structures based on specific needs. For inquiries, please contact us at <a href = "mailto: sales@streamlinescripting.com" style="text-decoration:none !important; text-decoration:none;"><span class="gradient_text">sales@streamlinescripting.com</span></a></p>
     </div>
   </section>
 
@@ -71,7 +84,6 @@ footer{
       <p>&copy; Copyright 2023 - <span class="gradient_text">Streamline Scripting, LLC</span><br>A Steven E. Bopp Company</p>
     </div>
   </footer>
-
 </body>
   
 </html>
