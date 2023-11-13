@@ -9,18 +9,19 @@
         <title>Streamline Scripting | Welcome</title>
 
 		<!-- I'm not very stylish -->
-        <style> 
-            body              { background: linear-gradient(180deg, #d7eef4ff, #9fcee1ff); /* Add a linear gradient (180 deg.)... */ background-attachment: fixed; /* ...across the entire size of the viewport */ font: 15px/1.5 "Times New Roman", Times, serif; padding:0; margin:0; text-align: center;} 
-            canvas            { display: block; position: absolute; } 
+        <style>      
+            #background-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, #d7eef4ff, #9fcee1ff) /* Add a linear gradient (180 deg.)... */ ; z-index: 0; }
+            #windCanvas       { position: absolute; top: 0; left: 0; background-color: transparent; z-index: 1; }
             a                 { color: inherit } /*Hyperlink Colors: inherit parent properties, Black normally and green when clicked*/
             a:hover, a:active { background-image: linear-gradient(90deg, #f67038ff, #df4bebff); -webkit-background-clip: text; background-clip: text; color: transparent; display: inline; text-decoration: underline; } /* Add linear gradients into individual hover/click text elements */ 
             .gradient_text    { background-image: linear-gradient(90deg, #f67038ff, #df4bebff); -webkit-background-clip: text; background-clip: text; color: transparent; display: inline; } /* Add linear gradients into individual text elements */    
-            .foreground       { position: center; top: 50%; left: 50%; color: #555; font-size: 24px; }
-            #logo             { max-width: 100%; margin-top: 4vw; } /* Make sure the logo doesn't exceed its natural size */
+            body              { z-index: 2; background-attachment: fixed; /* ...across the entire size of the viewport */ font: 15px/1.5 "Times New Roman", Times, serif; padding:0; margin:0; text-align: center;} 
+            #foreground       { text-align: center; z-index: 2; position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); color: #555; font-size: 24px; }
+            #logo             { position: center; max-width: 100%; margin-top: 2vw; } /* Make sure the logo doesn't exceed its natural size */
             #footer           { margin-top: 20px; padding-top: 3vw; }
             #copyright        { font-size: 1.5vw; color: #555; } /* Default font size using viewport width for proportional font size */
-            #mission          { padding-top: 3vw; padding-left: 20vw; max-width: 60vw; text-align: justify; text-justify: inter-word;}
-            #subsequent_items { padding-left: 20vw; max-width: 60vw; text-align: justify; text-justify: inter-word; }
+            #mission          { padding-top: 3vw; margin: 0 auto; max-width: 70vw; min-width: 55vw; text-align: justify; text-justify: inter-word; }
+            #subsequent_items { margin: 0 auto; max-width: 65vw; min-width: 60vw; text-align: justify; text-justify: inter-word;}
         </style> 
 
 		<!-- Client detection -->
@@ -60,9 +61,15 @@
 
     <!-- Bodyparts ;) -->
     <body>
+    
+        <!-- Background Layer -->
+        <div id="background-layer"></div>
 
-        <!-- Add HTML objects to the foreground, needs to be placed before the canvas object -->
-        <div class="foreground"> <!-- Class here makes objects appear in front of the animation from before -->
+        <!-- Canvas Layer -->
+        <canvas id="windCanvas"></canvas>
+
+        <!-- Add HTML objects to the foreground -->
+        <div id="foreground"> <!-- Class here makes objects appear in front of the animation from before -->
 
             <img id="logo" src="./img/Streamline_Scripting_v2.png" alt="Logo">
 
@@ -79,18 +86,20 @@
                 <p id="copyright">&copy; Copyright 2023 - <span class="gradient_text">Streamline Scripting, LLC</span><br>A Steven E. Bopp Company</p>
             </footer>
     
-        </div>     
+        </div>
 
-        <!-- Generate a 'wind-like' animation -->
-        <canvas id="windCanvas"></canvas>
+
         <script>
             const canvas = document.getElementById('windCanvas');
             const ctx = canvas.getContext('2d');
+    
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+    
             const particles = [];
     
-            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-
-            function normalDistribution(mean, stdDev) { // Custom function to generate normally-distributed random values 
+            // Function to generate random values following a normal distribution
+            function normalDistribution(mean, stdDev) {
                 let u = 0, v = 0;
                 while(u === 0) u = Math.random(); // Converting [0,1) to (0,1)
                 while(v === 0) v = Math.random();
@@ -102,20 +111,22 @@
                 constructor() {
                     this.x = Math.random() * canvas.width;
                     this.y = Math.random() * canvas.height;
-                    this.length = normalDistribution(100, 33); // Mean = 100, Standard Deviation = 33
+                    this.length = normalDistribution(60, 20); // Mean = 60, Standard Deviation = 20
                     this.speed = Math.random() * 3 + 1;
                     this.angle = (Math.random() * 10 - 5) * Math.PI / 180; // +/- 5 degree range converted to radians
-                    this.r = (normalDistribution(225, 15)).toFixed(0);  // Generate randomized colors
-                    this.g = (normalDistribution(225, 15)).toFixed(0);  // Generate randomized colors
-                    this.b = (normalDistribution(225, 15)).toFixed(0);  // Generate randomized colors
+                    this.r = (normalDistribution(225, 15)).toFixed(0);  // Generate a randomized color as an integer
+                    this.g = (normalDistribution(225, 15)).toFixed(0);  // Generate a randomized color as an integer
+                    this.b = (normalDistribution(225, 15)).toFixed(0);  // Generate a randomized color as an integer
                     this.alpha = normalDistribution(0.3, 0.1); // Mean = 0.3, Standard Deviation = 0.1
                     this.lineWidth = normalDistribution(2, 1); // Mean = 2, Standard Deviation = 1
                 }
+    
                 update() {
                     this.x += this.speed;
                     this.y += Math.sin(this.angle) * this.speed;
                     if (this.length > 0.2) this.length -= 0.1;
                 }
+    
                 draw() {
                     ctx.strokeStyle = `rgba(${this.r}, ${this.g}, ${this.b}, ${this.alpha})`; // Use this line to generate randomized colors in the streaks
                     //ctx.strokeStyle = `rgba(255, 255, 255, ${this.alpha})`; // use this line for uncolored streaks
@@ -134,14 +145,16 @@
                     particles.push(new Particle());
                 }
             }
-
+    
             function animate() {
                 requestAnimationFrame(animate);
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
                 for (const particle of particles) {
                     particle.update();
                     particle.draw();
                 }
+    
                 particles.forEach((particle, index) => {
                     if (particle.length <= 0.2) {
                         particles.splice(index, 1);
@@ -150,14 +163,16 @@
                 });
             }
     
-            createParticles(); animate();
+            createParticles();
+            animate();
+    
             window.addEventListener('resize', () => {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
                 createParticles();
             });
         </script>
-
+        
     </body>
   
 </html>
