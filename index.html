@@ -66,12 +66,10 @@
         <script>
             const canvas = document.getElementById('windCanvas');
             const ctx = canvas.getContext('2d');
-    
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-    
             const particles = [];
-            
+    
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+
             function normalDistribution(mean, stdDev) { // Custom function to generate normally-distributed random values 
                 let u = 0, v = 0;
                 while(u === 0) u = Math.random(); // Converting [0,1) to (0,1)
@@ -84,9 +82,12 @@
                 constructor() {
                     this.x = Math.random() * canvas.width;
                     this.y = Math.random() * canvas.height;
-                    this.length = normalDistribution(60, 20); // Mean = 60, Standard Deviation = 20
+                    this.length = normalDistribution(100, 33); // Mean = 100, Standard Deviation = 33
                     this.speed = Math.random() * 3 + 1;
                     this.angle = (Math.random() * 10 - 5) * Math.PI / 180; // +/- 5 degree range converted to radians
+                    this.r = (normalDistribution(225, 15)).toFixed(0);  // Generate randomized colors
+                    this.g = (normalDistribution(225, 15)).toFixed(0);  // Generate randomized colors
+                    this.b = (normalDistribution(225, 15)).toFixed(0);  // Generate randomized colors
                     this.alpha = normalDistribution(0.3, 0.1); // Mean = 0.3, Standard Deviation = 0.1
                     this.lineWidth = normalDistribution(2, 1); // Mean = 2, Standard Deviation = 1
                 }
@@ -96,7 +97,8 @@
                     if (this.length > 0.2) this.length -= 0.1;
                 }
                 draw() {
-                    ctx.strokeStyle = `rgba(255, 255, 255, ${this.alpha})`;
+                    ctx.strokeStyle = `rgba(${this.r}, ${this.g}, ${this.b}, ${this.alpha})`; // Use this line to generate randomized colors in the streaks
+                    //ctx.strokeStyle = `rgba(255, 255, 255, ${this.alpha})`; // use this line for uncolored streaks
                     ctx.lineWidth = this.lineWidth;
                     ctx.beginPath();
                     ctx.moveTo(this.x, this.y);
