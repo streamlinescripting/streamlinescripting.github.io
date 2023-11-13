@@ -61,6 +61,26 @@
     <!-- Bodyparts ;) -->
     <body>
 
+        <!-- Add HTML objects to the foreground, needs to be placed before the canvas object -->
+        <div class="foreground"> <!-- Class here makes objects appear in front of the animation from before -->
+
+            <img id="logo" src="./img/Streamline_Scripting_v2.png" alt="Logo">
+
+            <section id="mission">
+                <p>At <span class="gradient_text">Streamline Scripting</span>, our mission is to <span class="gradient_text">empower</span> clients to reframe cultures from 'What can we do today?' to <i>'What ecosystem can we build for a better tomorrow?'</i> We create tailored, automated software solutions that seamlessly activate existing computational assets to work tirelessly at enhancing productivity, allowing engineers to focus on the <span class="gradient_text">big picture</span>.</p>  
+            </section>
+
+            <section id="subsequent_items">
+            	<p>Using our <span class="gradient_text"><a href="https://escholarship.org/uc/item/4qb8927d">published</a></span> and <span class="gradient_text"><a href="https://escholarship.org/uc/item/4qb8927d">freely</a></span> <span class="gradient_text"><a href="https://escholarship.org/uc/item/4qb8927d">available</a></span> methods, our approach is to identify and automate (with <span class="gradient_text">PowerShell</span>, <span class="gradient_text">Python</span>, <span class="gradient_text">JSL</span>, <span class="gradient_text">.NET</span>, <span class="gradient_text">BASH</span>, etc...) key operations in the visualization, processing, analysis, and generation of data sets used by techology sectors to eliminate monotonous tasks prone to human-errors.</p>  
+                <p> Streamline Scripting, LLC is pleased to offer its expertise with the understanding that project requirements may vary and, as such, we are open to discussing <span class="gradient_text">custom pricing</span> structures based on specific needs. For inquiries, please contact us at <a href = "mailto: sales@streamlinescripting.com" style="text-decoration:none !important; text-decoration:none;"><span class="gradient_text">sales@streamlinescripting.com</span></a></p>
+            </section>
+
+            <footer id="footer">
+                <p id="copyright">&copy; Copyright 2023 - <span class="gradient_text">Streamline Scripting, LLC</span><br>A Steven E. Bopp Company</p>
+            </footer>
+    
+        </div>     
+
         <!-- Generate a 'wind-like' animation -->
         <canvas id="windCanvas"></canvas>
         <script>
@@ -137,26 +157,6 @@
                 createParticles();
             });
         </script>
-
-        <!-- Add HTML objects to the foreground -->
-        <div class="foreground"> <!-- Class here makes objects appear in front of the animation from before -->
-
-            <img id="logo" src="./img/Streamline_Scripting_v2.png" alt="Logo">
-
-            <section id="mission">
-                <p>At <span class="gradient_text">Streamline Scripting</span>, our mission is to <span class="gradient_text">empower</span> clients to reframe cultures from 'What can we do today?' to <i>'What ecosystem can we build for a better tomorrow?'</i> We create tailored, automated software solutions that seamlessly activate existing computational assets to work tirelessly at enhancing productivity, allowing engineers to focus on the <span class="gradient_text">big picture</span>.</p>  
-            </section>
-
-            <section id="subsequent_items">
-            	<p>Using our <span class="gradient_text"><a href="https://escholarship.org/uc/item/4qb8927d">published</a></span> and <span class="gradient_text"><a href="https://escholarship.org/uc/item/4qb8927d">freely</a></span> <span class="gradient_text"><a href="https://escholarship.org/uc/item/4qb8927d">available</a></span> methods, our approach is to identify and automate (with <span class="gradient_text">PowerShell</span>, <span class="gradient_text">Python</span>, <span class="gradient_text">JSL</span>, <span class="gradient_text">.NET</span>, <span class="gradient_text">BASH</span>, etc...) key operations in the visualization, processing, analysis, and generation of data sets used by techology sectors to eliminate monotonous tasks prone to human-errors.</p>  
-                <p> Streamline Scripting, LLC is pleased to offer its expertise with the understanding that project requirements may vary and, as such, we are open to discussing <span class="gradient_text">custom pricing</span> structures based on specific needs. For inquiries, please contact us at <a href = "mailto: sales@streamlinescripting.com" style="text-decoration:none !important; text-decoration:none;"><span class="gradient_text">sales@streamlinescripting.com</span></a></p>
-            </section>
-
-            <footer id="footer">
-                <p id="copyright">&copy; Copyright 2023 - <span class="gradient_text">Streamline Scripting, LLC</span><br>A Steven E. Bopp Company</p>
-            </footer>
-    
-        </div>
 
     </body>
   
