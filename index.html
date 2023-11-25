@@ -18,8 +18,6 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@100;400;900&display=swap" rel="stylesheet" />
         
-		<!-- Include Modernizr -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 
 		<!-- AnimeJS library for Code Generation Animation, apply before any other JS code and do not attempt to include this lib. more than 1 time -->
 		<!-- <script src="/anime.js"></script> -->
@@ -69,34 +67,6 @@
             #mission          { z-index: 3; padding-top: 3vw; margin: 0 auto; max-width: 65vw; min-width: 60vw; text-align: justify; text-justify: inter-word; }
             #subsequent_items { z-index: 3; margin: 0 auto; max-width: 65vw; min-width: 60vw; text-align: justify; text-justify: inter-word;}
 
-/* Default styles for non-touch devices */
-.no-touch p {
-    font-size: 1.2vw;
-}
-
-/* Styles for touch devices */
-.touch p {
-    font-size: 4vw;
-}
-
-@media only screen and (max-width: 768px) {
-    /* Styles for mobile devices */
-    p {
-        font-size: 4vw;
-    }
-
-    #logo {
-        width: 80%;
-    }
-
-    #copyright {
-        font-size: 1.5vw;
-    }
-}
-
-
-
-
 		</style>
 	</head>
 
@@ -115,21 +85,34 @@
  <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> --> 
 
 <script>
-function setStyles() {
-    var isMobile = window.innerWidth <= 768; // Adjust the threshold as needed
+    function setStyles() { // Function to detect the device type and set font size and logo size accordingly
+        var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-    var paragraphSelector = 'p';
-    var logo = document.getElementById('logo');
-    var copyright = document.getElementById('copyright');
+        var paragraphSelector = 'p'; // Set paragraph font size
+        if (isMobile) {
+            document.querySelectorAll(paragraphSelector).forEach(function(paragraph) {
+                paragraph.style.fontSize = '4vw'; // Adjust the font size for mobile devices
+            });
+        } else {
+            document.querySelectorAll(paragraphSelector).forEach(function(paragraph) {
+                paragraph.style.fontSize = '1.2vw'; // Adjust the font size for desktop devices
+            });
+        }
 
-    document.querySelectorAll(paragraphSelector).forEach(function(paragraph) {
-        paragraph.style.fontSize = isMobile ? '4vw' : '1.2vw';
-    });
+        var logo = document.getElementById('logo'); // Set logo size
+        if (isMobile) {
+            logo.style.width = '80%'; // Adjust the logo size for mobile devices
+        } else {
+            logo.style.width = '40vw'; // Adjust the logo size for desktop devices
+        }
 
-    logo.style.width = isMobile ? '80%' : '40vw';
-
-    copyright.style.fontSize = isMobile ? '1.5vw' : '0.75vw';
-}
+        var copyright = document.getElementById('copyright'); // Set font size for footer
+        if (isMobile) {
+            copyright.style.fontSize = '1.5vw'; // Adjust the font size for mobile devices
+        } else {
+            copyright.style.fontSize = '0.75vw'; // Adjust the font size for desktop devices
+        }
+    }
     window.onload = setStyles; // Call the setStyles function on page load
 </script>
 
