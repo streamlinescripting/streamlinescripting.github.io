@@ -19,8 +19,8 @@
 		<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@100;400;900&display=swap" rel="stylesheet" />
 
 		<!-- AnimeJS library for Code Generation Animation, apply before any other JS code and do not attempt to include this lib. more than 1 time -->
-		 <script src="/anime.js"></script> 
-		<!-- <script src="/Users/mainuser/Documents/Programs/anime-master/lib/anime.js"></script> -->
+		 <script src="/anime.js"></script>
+		<!-- <script src="/Users/mainuser/Documents/Programs/anime-master/lib/anime.js"></script>  -->
 
 		<!-- Include Modernizr -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
@@ -69,31 +69,37 @@
             #mission          { z-index: 3; padding-top: 3vw; margin: 0 auto; max-width: 65vw; min-width: 60vw; text-align: justify; text-justify: inter-word; }
             #subsequent_items { z-index: 3; margin: 0 auto; max-width: 65vw; min-width: 60vw; text-align: justify; text-justify: inter-word; }
 
-/* Default styles for non-touch devices */
-.no-touch p {
-    font-size: 1.2vw;
-}
+        /* Common styles for both mobile and desktop */
+        body {
+            font-family: 'Prompt', sans-serif;
+        }
 
-/* Styles for touch devices */
-.touch p {
-    font-size: 4vw;
-}
+        p {
+            margin: 10px;
+        }
 
-@media only screen and (max-width: 768px) {
-    /* Styles for mobile devices */
-    p {
-        font-size: 4vw;
-    }
+        #logo {
+            transition: width 0.5s;
+        }
 
-    #logo {
-        width: 80%;
-    }
+        #copyright {
+            transition: font-size 0.5s;
+        }
 
-    #copyright {
-        font-size: 1.5vw;
-    }
-}
+        /* Mobile-specific styles */
+        @media only screen and (max-width: 768px) {
+            p {
+                font-size: 4vw;
+            }
 
+            #logo {
+                width: 80%;
+            }
+
+            #copyright {
+                font-size: 1.5vw;
+            }
+        }
 
 		</style>
 	</head>
@@ -106,8 +112,6 @@
 
  <body>
 
-
-
 <!-- <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!>
    <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!>	 
  <!> <!> <!> <!> <!>   Client detection  <!> <!> <!> <!> <!>
@@ -115,22 +119,26 @@
  <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> <!> --> 
 
 <script>
-function setStyles() {
-    var isMobile = window.innerWidth <= 768; // Adjust the threshold as needed
+    function setStyles() {
+        var logo = document.getElementById('logo');
+        var copyright = document.getElementById('copyright');
+        
+        var isMobile = window.innerWidth <= 768;
 
-    var paragraphSelector = 'p';
-    var logo = document.getElementById('logo');
-    var copyright = document.getElementById('copyright');
+        if (isMobile) {
+            logo.style.width = '80%';
+            copyright.style.fontSize = '1.5vw';
+        } else {
+            logo.style.width = '40vw';
+            copyright.style.fontSize = '0.75vw';
+        }
+    }
 
-    document.querySelectorAll(paragraphSelector).forEach(function(paragraph) {
-        paragraph.style.fontSize = isMobile ? '4vw' : '1.2vw';
-    });
+    // Call setStyles on page load
+    window.onload = setStyles;
 
-    logo.style.width = isMobile ? '80%' : '40vw';
-
-    copyright.style.fontSize = isMobile ? '1.5vw' : '0.75vw';
-}
-    window.onload = setStyles; // Call the setStyles function on page load
+    // Call setStyles whenever the window is resized
+    window.onresize = setStyles;
 </script>
 
 
